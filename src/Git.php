@@ -21,16 +21,22 @@ class Git {
                 git log \\
                     --grep=$this->publicMarker \\
                     --relative-date \\
-                    --pretty=format:'{%n  \"commit\": \"%h\",%n  \"author\": \"%an <%ae>\",%n  \"date\": \"%ad\",%n  \"message\": \"%f\"%n},' \\
+                    --pretty=format:'{ \"commit\": \"%h\",  \"author\": \"%an <%ae>\",  \"date\": \"%ad\",  \"message\": \"%s\"}' \\
                     $tag
-                $@ | \\
-                perl -pe 'BEGIN{print \"[\"}; END{print \"]\n\"}' | \\
-                perl -pe 's/},]/}]/'
         ";
 
-        $json = exec($command);
+        exec($command, $json);
 
-        return json_decode($json);
+        $commits = [];
+
+        foreach($json as $line) {
+            $commit = json_decode($line);
+            if (json_last_error() === JSON_ERROR_NONE) {
+                $commits[] = $commit;
+            }
+        }
+
+        return $commits;
     }
 
     public function getDate($tag)
