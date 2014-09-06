@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/maxbrokman/gitChangeLog.svg?branch=master)](https://travis-ci.org/maxbrokman/gitChangeLog)
+[![Coverage Status](https://img.shields.io/coveralls/maxbrokman/gitChangeLog.svg)](https://coveralls.io/r/maxbrokman/gitChangeLog)
+
 ## Git Based Change Log
 
 This package generates a change log style report from git commits. Each tag is listed with its date and any commits included in it tagged with a certain string (@public by default)
