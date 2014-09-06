@@ -11,18 +11,18 @@ class Git {
     {
         $command = "git tag -l";
         exec($command, $tags);
-        arsort($tags);
-        return $tags;
+        arsort($tags, SORT_NATURAL);
+        return array_values($tags);
     }
 
-    public function getLog($tag)
+    public function getLog($from, $to)
     {
         $command = "
                 git log \\
                     --grep=$this->publicMarker \\
                     --relative-date \\
                     --pretty=format:'{ \"commit\": \"%h\",  \"author\": \"%an <%ae>\",  \"date\": \"%ad\",  \"message\": \"%s\"}' \\
-                    $tag
+                    $from..$to
         ";
 
         exec($command, $json);
@@ -41,10 +41,17 @@ class Git {
 
     public function getDate($tag)
     {
-        $command = "git show --format=%ar --quiet $tag";
+        $command = "git show --format=%at --quiet $tag";
 
         return exec($command);
     }
+
+    public function getFirstCommit()
+    {
+        $command = "git log --pretty=format:%H | tail -1";
+        return exec($command);
+    }
+
 
     /**
      * @param string $publicMarker

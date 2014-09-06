@@ -10,6 +10,8 @@ This package generates a change log style report from git commits. Each tag is l
 - PHP must be able to run exec().
 - Git must be installed! You should probably have some tags as well...
 
+##
+
 ## Code Example
 
     $changeLog = new MaxBrokman\GitChangeLog\ChangeLog( new MaxBrokman\GitChangeLog\Git );
@@ -34,6 +36,13 @@ Will return something like
         },
         ...
     ]
+
+## Installation
+
+With composer, require
+
+
+     "maxbrokman/git-change-log": "0.0.3"
 
 ## Use Case
 

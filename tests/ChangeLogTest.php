@@ -17,6 +17,8 @@ class ChangeLogTest extends \PHPUnit_Framework_TestCase {
             ->andReturn($this->log())
             ->shouldReceive('getDate')
             ->andReturn(time())
+            ->shouldReceive('getFirstCommit')
+            ->andReturn('aaaaaaaaa')
             ->getMock();
 
         $changeLog = new ChangeLog($gitMock);
