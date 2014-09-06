@@ -5,7 +5,7 @@ namespace MaxBrokman\GitChangeLog;
 
 class Git {
 
-    private $publicMarker = "@public";
+    private $publicMarker = "@public\\|!public";
 
     public function getTags()
     {
@@ -19,7 +19,7 @@ class Git {
     {
         $command = "
                 git log \\
-                    --grep=$this->publicMarker \\
+                    --grep='$this->publicMarker' \\
                     --relative-date \\
                     --pretty=format:'{ \"commit\": \"%h\",  \"author\": \"%an <%ae>\",  \"date\": \"%ad\",  \"message\": \"%s\"}' \\
                     $from..$to

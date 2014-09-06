@@ -3,7 +3,7 @@
 
 ## Git Based Change Log
 
-This package generates a change log style report from git commits. Each tag is listed with its date and any commits included in it tagged with a certain string (@public by default)
+This package generates a change log style report from git commits. Each tag is listed with its date and any commits included in it tagged with a certain string (!public or @public by default)
 
 ## Requirements
 
@@ -48,7 +48,7 @@ With composer, require
 
 I work on an internal project for a large company. Some of our stakeholders want to be kept informed about what is happening with the application.
 We release several times a day, and this package allows us to provide a list within the application of what has been updated, without having to manually maintain a changelog.
-We use **@public** in commit messages to mark them as safe for public (well in our case internal) consumption.
+We use **!public** in commit messages to mark them as safe for public (well in our case internal) consumption.
 
 ## API Reference
 
