@@ -1,0 +1,22 @@
+{
+    "name": "maxbrokman/gitChangeLog",
+    "description": "Generate a change log from git commits, separated by release tags",
+    "license": "MIT",
+    "keywords": ["git", "tags", "changelog"],
+    "authors": [
+        {
+            "name": "Max Brokman",
+            "email": "max.brokman@gmail.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "4.2.*",
+        "mockery/mockery": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "MaxBrokman\\GitChangeLog\\": "src"
+        }
+    }
+}
