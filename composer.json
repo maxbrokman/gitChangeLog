@@ -1,5 +1,5 @@
 {
-    "name": "maxbrokman/gitChangeLog",
+    "name": "maxbrokman/git-change-log",
     "description": "Generate a change log from git commits, separated by release tags",
     "license": "MIT",
     "keywords": ["git", "tags", "changelog"],
