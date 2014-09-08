@@ -22,6 +22,7 @@ class Git {
                 git log \\
                     --grep='$this->publicMarker' \\
                     --relative-date \\
+                    --no-merges \\
                     --pretty=format:'{ \"commit\": \"%h\",  \"author\": \"%an <%ae>\",  \"date\": \"%ad\",  \"message\": \"%s\"}' \\
                     $from..$to \\
                 | grep -v $this->excludeMarker
