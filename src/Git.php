@@ -6,6 +6,7 @@ namespace MaxBrokman\GitChangeLog;
 class Git {
 
     private $publicMarker = "@public\\|!public";
+    private $excludeMarker = "!private";
 
     public function getTags()
     {
@@ -22,7 +23,8 @@ class Git {
                     --grep='$this->publicMarker' \\
                     --relative-date \\
                     --pretty=format:'{ \"commit\": \"%h\",  \"author\": \"%an <%ae>\",  \"date\": \"%ad\",  \"message\": \"%s\"}' \\
-                    $from..$to
+                    $from..$to \\
+                | grep -v $this->excludeMarker
         ";
 
         exec($command, $json);
@@ -61,6 +63,16 @@ class Git {
     {
         $this->publicMarker = $publicMarker;
     }
+
+    /**
+     * @param string $excludeMarker
+     */
+    public function setExcludeMarker($excludeMarker)
+    {
+        $this->excludeMarker = $excludeMarker;
+    }
+
+
 
 
 } 

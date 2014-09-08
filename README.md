@@ -42,7 +42,7 @@ Will return something like
 With composer, require
 
 
-     "maxbrokman/git-change-log": "0.0.4"
+     "maxbrokman/git-change-log": "0.1.*"
 
 ## Use Case
 
