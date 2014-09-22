@@ -15,6 +15,7 @@ class DiffList
 
     /**
      * @param string $commit
+     * @return array
      */
     public function getDiffList($commit)
     {
@@ -28,6 +29,7 @@ class DiffList
 
     /**
      * @param array $files
+     * @return array
      */
     public function fileEntries($files)
     {

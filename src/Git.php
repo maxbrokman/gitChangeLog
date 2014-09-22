@@ -5,9 +5,18 @@ namespace MaxBrokman\GitChangeLog;
 
 class Git
 {
+    /**
+     * @var string used to include certain commit messages by grep
+     */
     private $publicMarker = "@public\\|!public";
+    /**
+     * @var string used to exclude certain commit messages by grep -v
+     */
     private $excludeMarker = "!private";
 
+    /**
+     * @return array
+     */
     public function getTags()
     {
         $command = "git tag -l";
@@ -17,6 +26,11 @@ class Git
         return array_values($tags);
     }
 
+    /**
+     * @param $from
+     * @param $to
+     * @return array
+     */
     public function getLog($from, $to)
     {
         $command = "
@@ -43,6 +57,10 @@ class Git
         return $commits;
     }
 
+    /**
+     * @param $tag
+     * @return string
+     */
     public function getDate($tag)
     {
         $command = "git show --format=%at --quiet $tag";
@@ -50,6 +68,9 @@ class Git
         return exec($command);
     }
 
+    /**
+     * @return string
+     */
     public function getFirstCommit()
     {
         $command = "git log --pretty=format:%H | tail -1";
@@ -109,6 +130,7 @@ class Git
 
     /**
      * @param string $excludeMarker
+     * @codeCoverageIgnore
      */
     public function setExcludeMarker($excludeMarker)
     {

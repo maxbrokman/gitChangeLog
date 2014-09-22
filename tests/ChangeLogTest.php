@@ -8,6 +8,16 @@ use \Mockery as M;
 
 class ChangeLogTest extends \PHPUnit_Framework_TestCase {
 
+    protected function tearDown()
+    {
+        m::close();
+    }
+
+    /**
+     * @covers MaxBrokman\GitChangeLog\ChangeLog::__construct
+     * @covers MaxBrokman\GitChangeLog\ChangeLog::getChangeLog
+     * @covers MaxBrokman\GitChangeLog\ChangeLog::setPerPage
+     */
     public function testGetChangeLog()
     {
         $gitMock = M::mock('MaxBrokman\GitChangeLog\Git')

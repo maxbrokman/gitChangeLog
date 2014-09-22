@@ -7,6 +7,12 @@ use MaxBrokman\GitChangeLog\ChangeLogEntry;
 
 class ChangeLogEntryTest extends \PHPUnit_Framework_TestCase {
 
+    /**
+     * @covers MaxBrokman\GitChangeLog\ChangeLogEntry::__construct
+     * @covers MaxBrokman\GitChangeLog\ChangeLogEntry::__get
+     * @covers MaxBrokman\GitChangeLog\ChangeLogEntry::__isset
+     * @covers MaxBrokman\GitChangeLog\ChangeLogEntry::fill
+     */
     public function testFillsOnConstruct()
     {
         $entry = new ChangeLogEntry([
@@ -17,6 +23,10 @@ class ChangeLogEntryTest extends \PHPUnit_Framework_TestCase {
         $this->assertSame('bar', $entry->foo);
     }
 
+    /**
+     * @covers MaxBrokman\GitChangeLog\ChangeLogEntry::fill
+     * @covers MaxBrokman\GitChangeLog\ChangeLogEntry::__get
+     */
     public function testFill()
     {
         $entry = new ChangeLogEntry;
@@ -27,6 +37,9 @@ class ChangeLogEntryTest extends \PHPUnit_Framework_TestCase {
         $this->assertSame('bar', $entry->foo);
     }
 
+    /**
+     * @covers MaxBrokman\GitChangeLog\ChangeLogEntry::__get
+     */
     public function testNullWhenNoAttribute()
     {
         $entry = new ChangeLogEntry;
