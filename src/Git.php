@@ -3,8 +3,8 @@
 
 namespace MaxBrokman\GitChangeLog;
 
-class Git {
-
+class Git
+{
     private $publicMarker = "@public\\|!public";
     private $excludeMarker = "!private";
 
@@ -13,6 +13,7 @@ class Git {
         $command = "git tag -l";
         exec($command, $tags);
         arsort($tags, SORT_NATURAL);
+
         return array_values($tags);
     }
 
@@ -32,7 +33,7 @@ class Git {
 
         $commits = [];
 
-        foreach($json as $line) {
+        foreach ($json as $line) {
             $commit = json_decode($line);
             if (json_last_error() === JSON_ERROR_NONE) {
                 $commits[] = $commit;
@@ -52,9 +53,50 @@ class Git {
     public function getFirstCommit()
     {
         $command = "git log --pretty=format:%H | tail -1";
+
         return exec($command);
     }
 
+    /**
+     * Gets the previous commit hash
+     * @param  string $commit
+     * @return string $commit - the abbrieviated commit hash of the previous commit
+     */
+    public function getPreviousCommit($commit)
+    {
+        $date = $this->getDate($commit);
+        $command = "git log --before=$date --max-count=2 --format=%h";
+        exec($command, $commits);
+
+        return $commits[1];
+    }
+
+    /**
+     * Gets diff summary since previous commit
+     * @param  string $commit
+     * @return array  $diff
+     */
+    public function getDiff($commit)
+    {
+        $previousCommit = $this->getPreviousCommit($commit);
+        $command = "git diff --stat $previousCommit $commit";
+        exec($command, $diff);
+
+        return $diff;
+    }
+
+    /**
+     * @param string $commit
+     * @param string $file
+     */
+    public function getDiffFile($commit, $file)
+    {
+        $file = str_replace('-', '/', $file);
+        $command = "git diff $commit -- $file";
+        exec($command, $diff);
+
+        return $diff;
+    }
 
     /**
      * @param string $publicMarker
@@ -72,8 +114,4 @@ class Git {
     {
         $this->excludeMarker = $excludeMarker;
     }
-
-
-
-
-} 
+}
